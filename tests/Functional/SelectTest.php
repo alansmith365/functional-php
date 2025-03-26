@@ -17,7 +17,7 @@ use function Functional\select;
 
 class SelectTest extends AbstractTestCase
 {
-    public function getAliases(): array
+    public static function getAliases(): array
     {
         return [
             ['Functional\select'],

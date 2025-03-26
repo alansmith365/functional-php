@@ -22,7 +22,7 @@ class FirstTest extends AbstractTestCase
     /** @var Traversable */
     private $badIterator;
 
-    public function getAliases(): array
+    public static function getAliases(): array
     {
         return [
             ['Functional\first'],

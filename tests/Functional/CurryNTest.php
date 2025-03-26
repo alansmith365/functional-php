@@ -11,6 +11,7 @@
 namespace Functional\Tests;
 
 use DateTime;
+use DateTimeInterface;
 
 use function Functional\curry_n;
 use function Functional\invoker;
@@ -73,12 +74,12 @@ class CurryNTest extends AbstractPartialTestCase
         }
     }
 
-    public function callbacks(): array
+    public static function callbacks(): array
     {
         $dt = new DateTime();
         $dt2 = clone $dt;
 
-        $dateFormat = invoker('format', [DateTime::ATOM]);
+        $dateFormat = invoker('format', [DateTimeInterface::ATOM]);
 
         return [
             ['Functional\Tests\add', [2, 4, 6, 8], 20, true],
@@ -89,9 +90,9 @@ class CurryNTest extends AbstractPartialTestCase
             [[new Adder(), 'staticAdd'], [2, 4, 6, 8], 20, true],
 
             ['number_format', [1.234, 2, ',', '\''], '1,23', false],
-            [['DateTime', 'createFromFormat'], [DateTime::ATOM, $dt->format(DateTime::ATOM)], $dt, true, $dateFormat],
-            ['DateTime::createFromFormat', [DateTime::ATOM, $dt->format(DateTime::ATOM)], $dt, true, $dateFormat],
-            [[new DateTime(), 'createFromFormat'], [DateTime::ATOM, $dt->format(DateTime::ATOM)], $dt, true, $dateFormat],
+            [['DateTime', 'createFromFormat'], [DateTimeInterface::ATOM, $dt->format(DateTimeInterface::ATOM)], $dt, true, $dateFormat],
+            ['DateTime::createFromFormat', [DateTimeInterface::ATOM, $dt->format(DateTimeInterface::ATOM)], $dt, true, $dateFormat],
+            [[new DateTime(), 'createFromFormat'], [DateTimeInterface::ATOM, $dt->format(DateTimeInterface::ATOM)], $dt, true, $dateFormat],
             [[new DateTime(), 'setTime'], [10, 10], $dt2->setTime(10, 10), true, $dateFormat],
         ];
     }

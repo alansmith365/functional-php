@@ -13,7 +13,6 @@ namespace Functional\Tests;
 use DomainException;
 use Functional\Exceptions\InvalidArgumentException;
 use Iterator;
-use PHPUnit\Framework\Error\Deprecated;
 use PHPUnit\Framework\TestCase;
 use Traversable;
 use TypeError;
@@ -79,20 +78,10 @@ class AbstractTestCase extends TestCase
         return $values;
     }
 
-    public function expectDeprecation(): void
-    {
-        if (\method_exists(parent::class, __FUNCTION__)) {
-            parent::expectDeprecation();
-            return;
-        }
-
-        $this->expectException(Deprecated::class);
-    }
-
     public function expectDeprecationMessage(string $message): void
     {
         if (\method_exists(parent::class, __FUNCTION__)) {
-            parent::expectDeprecationMessage($message);
+            parent::expectUserDeprecationMessage($message);
             return;
         }
 
