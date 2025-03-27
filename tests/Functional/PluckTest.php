@@ -141,32 +141,37 @@ class PluckTest extends AbstractTestCase
         $this->getExceptionIterator = new ArrayIterator($this->getExceptionArray);
     }
 
-    public $nullHash = [
-        'one' => [null => '1'],
-        'two' => [null => '2'],
-    ];
-
-    public function getNullHash(): array
+    public static function getNullHash(): array
     {
-        return $this->variateHash($this->nullHash, false);
+        $nullHash = [
+            'one' => [null => '1'],
+            'two' => [null => '2'],
+        ];
+
+        return self::variateHash($nullHash, false);
     }
 
-    public function getNullList(): array
+    public static function getNullList(): array
     {
-        return $this->variateList($this->nullHash, false);
+        $nullHash = [
+            'one' => [null => '1'],
+            'two' => [null => '2'],
+        ];
+
+        return self::variateList($nullHash, false);
     }
 
-    public function variateList($hash, $asObject = true): array
+    public static function variateList($hash, $asObject = true): array
     {
-        return $this->variate(\array_values($hash), $asObject);
+        return self::variate(\array_values($hash), $asObject);
     }
 
-    public function variateHash($hash, $asObject = true): array
+    public static function variateHash($hash, $asObject = true): array
     {
-        return $this->variate($hash, $asObject);
+        return self::variate($hash, $asObject);
     }
 
-    public function variate($array, $asObject): array
+    public static function variate($array, $asObject): array
     {
         if (!$asObject) {
             return [

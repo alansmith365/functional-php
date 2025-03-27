@@ -12,9 +12,8 @@ namespace Functional;
 
 final class Functional
 {
-
     /**
-     * @see \Function\ary
+     * @see \Functional\ary
      */
     const ary = '\Functional\ary';
 
